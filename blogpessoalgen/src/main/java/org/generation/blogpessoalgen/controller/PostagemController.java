@@ -1,9 +1,9 @@
-package org.generation.blogpessoal.controller;
+package org.generation.blogpessoalgen.controller;
 
 import java.util.List;
 
-import org.generation.blogpessoal.model.Postagem;
-import org.generation.blogpessoal.repository.PostagemRepository;
+import org.generation.blogpessoalgen.model.Postagem;
+import org.generation.blogpessoalgen.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.generation</groupId>
-	<artifactId>blogPessoal</artifactId>
+	<artifactId>blogpessoalgen</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>blogPessoal</name>
-	<description>blogPessoal</description>
+	<name>blogpessoalgen</name>
+	<description>Blog Pessoal</description>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
