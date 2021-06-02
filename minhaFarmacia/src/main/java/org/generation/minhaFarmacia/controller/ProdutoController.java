@@ -1,9 +1,9 @@
-package org.generation.minhaLojaDeGames.controller;
+package org.generation.minhaFarmacia.controller;
 
 import java.util.List;
 
-import org.generation.minhaLojaDeGames.model.Produto;
-import org.generation.minhaLojaDeGames.repository.ProdutoRepository;
+import org.generation.minhaFarmacia.model.Produto;
+import org.generation.minhaFarmacia.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,24 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 
-	@Autowired//passa o controle de tudo para a autowired e trás todos os métodos, para utilizar nos gets, put, post e delete
+	@Autowired
 	private ProdutoRepository repository;
 	
 	@GetMapping
-	public ResponseEntity<List<Produto>> GetAll(){
+	public ResponseEntity<List<Produto>> FindAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Produto> GetById(@PathVariable long id){
+	public ResponseEntity<Produto> FindById(@PathVariable long id){
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/nomejogo/{nomejogo}")
-	public ResponseEntity<List<Produto>> GetByNomeJogo(@PathVariable String nomeJogo){
-		return ResponseEntity.ok(repository.findAllByNomeJogoContainingIgnoreCase(nomeJogo));
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Produto>> FindByNome(@PathVariable String nome){
+		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping

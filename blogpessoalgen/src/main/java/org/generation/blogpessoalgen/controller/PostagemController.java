@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/postagens")//define a URL para o programa
-@CrossOrigin("*")//permite que o front-end trabalhe nesse programa, por isso SEMPRE tem que ter essa linha
+@CrossOrigin(origins = "*", allowedHeaders = "*")//permite que o front-end trabalhe nesse programa, por isso SEMPRE tem que ter essa linha
 public class PostagemController {
 
 	@Autowired

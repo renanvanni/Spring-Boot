@@ -32,9 +32,8 @@ public class Postagem {
 	private String text;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis()); // ao programa rodar, essa linha tráz exatamente
-		
-	// a data e hora da postagem
+	private Date date = new java.sql.Date(System.currentTimeMillis()); // ao programa rodar, essa linha tráz exatamente a data e hora da postagem
+	
 	//quando chegar em postagem na classe tema, pare de apresentar a informação
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
