@@ -10,6 +10,15 @@ public class UserLogin {
 	
 	private String token;
 
+
+	public UserLogin() {}
+	
+	public UserLogin(Usuario usuario) {
+		this.nome = usuario.getNome();
+		this.senha = usuario.getSenha();
+		this.usuario = usuario.getUsuario();
+	}
+
 	public String getNome() {
 		return nome;
 	}

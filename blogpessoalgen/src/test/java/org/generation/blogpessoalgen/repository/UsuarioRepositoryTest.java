@@ -23,21 +23,27 @@ public class UsuarioRepositoryTest {
 	
 	@BeforeAll
 	public void start() {
+		
 		Usuario usuario = new Usuario("Renan", "Renan", "12345");
-		if (usuarioRepository.findByUsuario(usuario.getUsuario()) == null)
+		
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
 			usuarioRepository.save(usuario);
+		}
 		
 		usuario = new Usuario("Lauro", "Lauro", "12354");
-		if (usuarioRepository.findByUsuario(usuario.getUsuario()) == null)
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
 			usuarioRepository.save(usuario);
+		}
 		
 		usuario = new Usuario("Rebeca", "Rebeca", "54321");
-		if (usuarioRepository.findByUsuario(usuario.getUsuario()) == null)
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
 			usuarioRepository.save(usuario);
+		}
 		
 		usuario = new Usuario("Luis", "Luis", "98765");
-		if (usuarioRepository.findByUsuario(usuario.getUsuario()) == null)
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
 			usuarioRepository.save(usuario);
+		}
 	}
 	
 	@Test
@@ -52,7 +58,6 @@ public class UsuarioRepositoryTest {
 		List<Usuario> usuario = usuarioRepository.findAllByUsuarioContainingIgnoreCase("Renan");
 		assertEquals(1, usuario.size());
 	}
-	
 	
 	@AfterAll
 	public void end() {

@@ -2,6 +2,7 @@ package org.generation.blogpessoalgen.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.generation.blogpessoalgen.model.UserLogin;
 import org.generation.blogpessoalgen.model.Usuario;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -38,6 +39,14 @@ public class UsuarioControllerTest {
 		HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuario);
 		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuarios/cadastrar", HttpMethod.POST, request, Usuario.class);
 				assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
+	}
+	
+	@Test
+	public void deveLogarUsuarios() {
+		UserLogin userLogin = new UserLogin(usuario);
+		HttpEntity<UserLogin> request = new HttpEntity<UserLogin>(userLogin);
+		ResponseEntity<Usuario> resposta = testRestTemplate.exchange("/usuarios/logar", HttpMethod.POST, request, Usuario.class);
+				assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
 	
 	@Disabled
