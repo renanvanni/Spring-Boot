@@ -16,15 +16,15 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	@NotNull(message = "Campo Obrigatório!")
 	@Size(min = 2, max = 100)
 	private String nome;
 	
-	@NotNull
+	@NotNull(message = "Campo Obrigatório!")
 	@Size(min = 2, max = 100)
 	private String usuario;
 	
-	@NotNull
+	@NotNull(message = "Campo Obrigatório!")
 	@Size(min = 5)
 	private String senha;
 	

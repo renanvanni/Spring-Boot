@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +26,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioService usuario;
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private UsuarioRepository repository;
 	
 	@PostMapping("/logar")
 	public ResponseEntity<UserLogin> Autentication(@RequestBody Optional<UserLogin> user){
-		return usuario.Logar(user)
+		return usuarioService.Logar(user)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
@@ -40,16 +41,40 @@ public class UsuarioController {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario){
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(this.usuario.CadastrarUsuario(usuario));
+				.body(this.usuarioService.CadastrarUsuario(usuario));
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<Usuario>> getUsuario(){
+	@GetMapping("/all")
+	public ResponseEntity<List<Usuario>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> GetById(@PathVariable long id){
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());				
+	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletar/{id}")
 	public void deleteById(@PathVariable long id) {
 		repository.deleteById(id);
+	}
+
+	/** 
+	 * Endpoint de update
+	 * 
+	 * Executa o método AtualizarUsuario da classe de serviço 
+	 * e verifica se tudo deu certo
+	 * 
+	 */
+
+	@PutMapping("/alterar")
+	public ResponseEntity<Usuario> Put(@RequestBody Usuario usuario){
+		Optional<Usuario> user = usuarioService.atualizarUsuario(usuario);
+		try {
+			return ResponseEntity.ok(user.get());
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

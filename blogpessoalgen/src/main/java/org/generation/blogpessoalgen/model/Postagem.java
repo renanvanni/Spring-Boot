@@ -23,12 +23,12 @@ public class Postagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // identifica id como chave primária
 	private long id;
 
-	@NotNull // não deixa o campo ser vazio
+	@NotNull(message = "Campo Obrigatório!")
 	@Size(min = 5, max = 100) // determina o tamanho min e max do titulo
 	private String title;
 
-	@NotNull
-	@Size(min = 10, max = 500)
+	@NotNull(message = "Campo Obrigatório!")
+	@Size(min = 5, max = 500)
 	private String text;
 
 	@Temporal(TemporalType.TIMESTAMP)

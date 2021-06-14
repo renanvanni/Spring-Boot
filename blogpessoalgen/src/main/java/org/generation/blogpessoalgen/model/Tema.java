@@ -21,7 +21,7 @@ public class Tema {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	@NotNull(message = "Campo Obrigatório!")
 	private String descricao;
 	
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)//todas as postagens do tema sofrerão alteração, por isso se deletar um tema, todos os posts serão deletados junto
